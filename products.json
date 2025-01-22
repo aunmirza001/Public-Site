@@ -1,0 +1,52 @@
+[
+    {
+        "id":1,
+        "name":"Pressure Switch",
+        "description": "Range: 0.1~0...1MPa",
+        "price": 120,
+        "image": "1.png"
+    },
+    {
+        "id":2,
+        "name":"Temperature Guage",
+        "description": "Range: 0.1~0...100MPa Accuraccy: < 0.25%F.S",
+        "price": 80,
+        "image": "2.png"
+    },
+    {
+        "id":3,
+        "name":"Buy a building ",
+        "price": 90,
+        "image": "3.png"
+    },
+    {
+        "id":4,
+        "name":"place it infront of you",
+        "price": 85,
+        "image": "4.png"
+    },
+    {
+        "id":5,
+        "name":"the plane will crash to bulding",
+        "price": 100,
+        "image": "5.png"
+    },
+    {
+        "id":6,
+        "name":"now you are safe ",
+        "price": 135,
+        "image": "6.png"
+    },
+    {
+        "id":7,
+        "name":"thanks for wathching...😊😊😊",
+        "price": 110,
+        "image": "7.png"
+    },
+    {
+        "id":8,
+        "name":"BETA ALININE",
+        "price": 105,
+        "image": "8.png"
+    }
+]

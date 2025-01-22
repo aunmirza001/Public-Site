@@ -37,6 +37,305 @@
     <!-- Favicon  -->
     <link rel="icon" href="images/falcon.png">
 </head>
+<style>
+    .container_2 {
+        width: 90%;
+        margin: auto;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .icon-cart {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        color: black;
+    }
+
+    .i {
+        width: 37px;
+        height: 37px;
+    }
+
+    .icon-cart span {
+        background-color: #00bfd8;
+        color: rgb(255, 255, 255);
+        padding: 8px;
+        border-radius: 50%;
+        margin-left: 10px;
+        font-size: 19px;
+        font-weight: bold;
+    }
+
+    .listProduct {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .item {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .item img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+
+    .cartTab {
+        position: fixed;
+        right: -100%;
+        top: 0;
+        bottom: 0;
+        width: 400px;
+        background-color: #333;
+        color: #fff;
+        transition: right 0.3s ease-in-out;
+    }
+
+    body.showCart .cartTab {
+        right: 0;
+    }
+
+    /* General styles remain the same above */
+
+    .cartTab {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        bottom: 0;
+        width: 400px;
+        max-width: 90vw;
+        background-color: #333;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        transition: right 0.3s ease-in-out;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        z-index: 10;
+    }
+
+    body.showCart .cartTab {
+        right: 0;
+    }
+
+    .cartTab h1 {
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin: 20px 0;
+        border-bottom: 1px solid #444;
+        padding-bottom: 10px;
+    }
+
+    .cartTab .listCart {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+    }
+
+    .cartTab .listCart .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        background: #444;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .cartTab .listCart .item .image {
+        width: 60px;
+        height: 60px;
+        overflow: hidden;
+        border-radius: 8px;
+    }
+
+    .cartTab .listCart .item .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .cartTab .listCart .item .details {
+        flex: 1;
+        margin-left: 10px;
+        color: #eee;
+    }
+
+    .cartTab .listCart .item .details .name {
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .cartTab .listCart .item .details .price {
+        font-size: 0.8rem;
+        margin-top: 5px;
+        color: #ccc;
+    }
+
+    .cartTab .listCart .item .quantity {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .cartTab .listCart .item .quantity span {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        background: #fff;
+        color: #333;
+        text-align: center;
+        line-height: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .cartTab .btn {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        border-top: 1px solid #444;
+    }
+
+    .cartTab .btn button {
+        flex: 1;
+        padding: 10px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .cartTab .btn .close {
+        margin-right: 10px;
+        background-color: #e74c3c;
+        color: #fff;
+    }
+
+    .cartTab .btn .close:hover {
+        background-color: #c0392b;
+    }
+
+    .cartTab .btn .checkOut {
+        background-color: #27ae60;
+        color: #fff;
+    }
+
+    .cartTab .btn .checkOut:hover {
+        background-color: #229954;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .cartTab .listCart .item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .cartTab .listCart .item .details {
+            margin-left: 0;
+        }
+
+        .cartTab .btn button {
+            font-size: 0.9rem;
+        }
+    }
+
+    .listProduct {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        padding: 20px 0;
+        margin: 15px;
+        /* border: 1px solid red; */
+    }
+
+    .listProduct .item {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .listProduct .item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .listProduct .item img {
+        width: 100%;
+        height: 150px;
+        object-fit: contain;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .listProduct .item h2 {
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin: 10px 0;
+        color: #333;
+    }
+
+    .listProduct .item .price {
+        font-size: 23px;
+        font-weight: 700;
+        color: #000000;
+        margin: 15px 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .listProduct button {
+        background-color: #00bfd8;
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: 19px;
+        border: none;
+        cursor: pointer;
+        width: 120px;
+        height: 37px;
+        transition: background-color 0.3s;
+    }
+
+    .listProduct button:hover {
+        border: 2px solid #00bfd8;
+        background-color: #ffffff;
+        color: #2980b9;
+    }
+
+    /* Add responsive spacing for smaller screens */
+    @media (max-width: 768px) {
+        .listProduct {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .listProduct .item {
+            padding: 10px;
+        }
+    }
+
+    .title {
+        font-size: 26px;
+        font-weight: bold;
+        color: black;
+    }
+</style>
 
 <body data-spy="scroll" data-target=".fixed-top">
 
@@ -78,6 +377,9 @@
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="#products">Products</a>
                 </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link page-scroll" href="admin.html">Admin</a>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="#request">Request</a>
                 </li>
@@ -146,189 +448,47 @@
     <!-- products -->
 
     <div class="basic-10">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>OUR PRODUCTS</h2>
-                    <p class="p-heading p-large">Elevate Your Engineering with Our Products.</p>
-                    <div class="container">
-                        <div class="box-container">
 
-                            <div class="box">
-                                <img src="1.png" alt="">
-                                <h3>HTML 5</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-
-                            <div class="box">
-                                <img src="2.png" alt="">
-                                <h3>CSS 3</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-
-                            <div class="box">
-                                <img src="3.png" alt="">
-                                <h3>Java</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-                            <div class="box">
-                                <img src="3.png" alt="">
-                                <h3>Java</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-                            <div class="box">
-                                <img src="3.png" alt="">
-                                <h3>Java</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-                            <div class="box">
-                                <img src="3.png" alt="">
-                                <h3>Java</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-                            <div class="box">
-                                <img src="3.png" alt="">
-                                <h3>Java</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-                            <div class="box">
-                                <img src="3.png" alt="">
-                                <h3>Java</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-                            <div class="box">
-                                <img src="3.png" alt="">
-                                <h3>Java</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-
-                            <div class="box">
-                                <img src="4.png" alt="">
-                                <h3>SASS</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-
-                            <div class="box">
-                                <img src="5.png" alt="">
-                                <h3>JQuery</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-
-                            <div class="box">
-                                <img src="6.png" alt="">
-                                <h3>React.js</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-                            <div class="box">
-                                <img src="6.png" alt="">
-                                <h3>React.js</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-                            <div class="box">
-                                <img src="6.png" alt="">
-                                <h3>React.js</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-                            <div class="box">
-                                <img src="6.png" alt="">
-                                <h3>React.js</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
-                                <h5>$60.00</h5>
-                                <a href="#" class="btn">Add to cart</a>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- <a class="btn-solid-lg page-scroll" href="products.html">VISIT STORE</a> -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of container -->
-        </div> <!-- end of basic-9 -->
-        <!-- end of product-->
+        <div class="container_2">
+            <header style="display: flex; justify-content: space-between;">
+                <div></div>
+                <div class="title">Our Products</div>
+                <div class="icon-cart">
+                    <svg class="i" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
+                    </svg>
+                    <span>0</span>
+                </div>
+            </header>
+            <div class="listProduct">
+                <div class="item">
+                    <img src="image1.jpg" alt="Product Image">
+                    <h2>Protein A</h2>
+                    <div class="price">£120</div>
+                    <button class="addCart">Add to Cart</button>
+                </div>
+                <div class="item">
+                    <img src="image2.jpg" alt="Product Image">
+                    <h2>Protein B</h2>
+                    <div class="price">£150</div>
+                    <button class="addCart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="cartTab">
+            <h1>Shopping Cart</h1>
+            <div class="listCart"></div>
+            <div class="btn">
+                <button class="close">Close</button>
+                <button class="checkOut">Checkout</button>
+            </div>
+        </div>
 
 
-        <!-- Contact -->
-        <div id="contact" class="form-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2>Contact Information</h2>
-                        <ul class="list-unstyled li-space-lg">
-                            <li class="address">Don't hesitate to give us a call or send us a contact form message</li>
-                            <li><i class="fas fa-phone"></i><a class="turquoise"
-                                    href="tel:+923226760480">+923226760480</a></li>
-                            <li><i class="fas fa-envelope"></i><a class="turquoise"
-                                    href="mailto:info@fdeworks.com">info@fdeworks.com</a></li>
-                        </ul>
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-                <div class="col-lg-6">
 
-                    <!-- Contact Form -->
-                    <form id="contactForm" data-toggle="validator" data-focus="false">
-                        <div class="form-group">
-                            <input type="text" class="form-control-input" id="cname" required>
-                            <label class="label-control" for="cname">Name</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control-input" id="cemail" required>
-                            <label class="label-control" for="cemail">Email</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control-textarea" id="cmessage" required></textarea>
-                            <label class="label-control" for="cmessage">Your message</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group checkbox">
-                            <input type="checkbox" id="cterms" value="Agreed-to-Terms" required>I have read and agree
-                            with Evolo's stated <a href="privacy-policy.html">Privacy Policy</a> and <a
-                                href="terms-conditions.html">Terms Conditions</a>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="form-control-submit-button">SUBMIT MESSAGE</button>
-                        </div>
-                        <div class="form-message">
-                            <div id="cmsgSubmit" class="h3 text-center hidden"></div>
-                        </div>
-                    </form>
-                    <!-- end of contact form -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of form-2 -->
-    <!-- end of contact -->
+    </div>
 
 
     <!-- Footer -->
@@ -376,6 +536,7 @@
     </div> <!-- end of footer -->
     <!-- end of footer -->
 
+    <script src="https://cdn.jsdelivr.net/npm/pocketbase@0.9.1/dist/pocketbase.min.js"></script>
 
 
     <!-- Scripts -->
@@ -387,6 +548,167 @@
     <script src="js/jquery.magnific-popup.js"></script>
     <script src="js/validator.min.js"></script>
     <script src="js/scripts.js"></script>
+    <script>
+        let iconCart = document.querySelector('.icon-cart');
+        let closeCart = document.querySelector('.close');
+        let body = document.querySelector('body');
+        let listProductHTML = document.querySelector('.listProduct');
+        let listCartHtml = document.querySelector('.listCart');
+        let iconCartSpan = document.querySelector('.icon-cart span');
+
+        let listProducts = [];
+        let carts = [];
+
+
+        iconCart.addEventListener('click', () => {
+            body.classList.toggle('showCart')
+        })
+        closeCart.addEventListener('click', () => {
+            body.classList.toggle('showCart');
+        });
+
+
+        const addDataToHTML = () => {
+            listProductHTML.innerHTML = '';
+            if (listProducts.length > 0) {
+                listProducts.forEach(product => {
+                    let newProduct = document.createElement('div');
+                    newProduct.classList.add('item');
+                    newProduct.dataset.id = product.id;
+                    newProduct.innerHTML = `
+            <img src="${product.image}">
+            <h2>${product.name}</h2>
+            <p>${product.description}</p>
+            <div class="price">${product.price} $ </div>
+            <button class="addCart"> Add to Cart </button>`;
+                    listProductHTML.appendChild(newProduct);
+                })
+            }
+        }
+
+        listProductHTML.addEventListener('click', () => {
+            let positionClick = event.target;
+            if (positionClick.classList.contains('addCart')) {
+                let product_id = positionClick.parentElement.dataset.id;
+                addToCart(product_id);
+            }
+        })
+
+        const addToCart = (product_id) => {
+            let positionThisProductInCart = carts.findIndex((value) => value.product_id === product_id);
+            if (carts.length <= 0) {
+                carts = [{
+                    product_id: product_id,
+                    quantity: 1
+                }];
+            } else if (positionThisProductInCart < 0) {
+                carts.push({
+                    product_id: product_id,
+                    quantity: 1
+                });
+            } else {
+                carts[positionThisProductInCart].quantity = carts[positionThisProductInCart].quantity + 1; // Correction ici
+            }
+            addCartToHTML();
+            addCartToMemory();
+        };
+
+        // const addCartToMemory = () => {
+        //     localStorage.setItem('cart', JSON.stringify(carts))
+        // }
+        const addCartToMemory = () => {
+            localStorage.setItem('cart', JSON.stringify(carts)); // Save cart data to localStorage
+        };
+
+        document.querySelector('.checkOut').addEventListener('click', () => {
+            window.location.href = 'checkout.html'; // Redirect to the checkout page
+        });
+
+
+        const addCartToHTML = () => {
+            listCartHtml.innerHTML = '';
+            let totalQuantity = 0;
+            if (carts.length > 0) {
+                carts.forEach(cart => {
+                    totalQuantity = totalQuantity + cart.quantity;
+                    let newCart = document.createElement('div');
+                    newCart.classList.add('item');
+                    newCart.dataset.id = cart.product_id;
+                    let positionProduct = listProducts.findIndex((value) => value.id == cart.product_id);
+                    let info = listProducts[positionProduct];
+                    newCart.innerHTML = `<div class="image">
+                    <img src="${info.image}">
+                </div>
+                <div class="name">
+                    ${info.name}
+                </div>
+                <div class="totalPrice">
+                    ${info.price * cart.quantity}
+                </div>
+                <div class="quantity">
+                    <span class="minus"> < </span>
+                    <span>${cart.quantity}</span>
+                    <span class="plus"> > </span>
+
+                </div>`;
+                    listCartHtml.appendChild(newCart);
+                })
+            }
+            iconCartSpan.innerText = totalQuantity;
+        }
+
+        listCartHtml.addEventListener('click', (event) => {
+            let positionClick = event.target;
+            if (positionClick.classList.contains('minus') || positionClick.classList.contains('plus')) {
+                let product_id = positionClick.closest('.item').dataset.id; // Correction ici
+                let type = positionClick.classList.contains('plus') ? 'plus' : 'minus';
+                changeQuantity(product_id, type);
+            }
+        });
+
+        document.querySelector('.checkOut').addEventListener('click', () => {
+            window.location.href = 'checkout.html';
+        });
+
+        const changeQuantity = (product_id, type) => {
+            let positionItemInCart = carts.findIndex((value) => value.product_id == product_id);
+            if (positionItemInCart >= 0) {
+                switch (type) {
+                    case 'plus':
+                        carts[positionItemInCart].quantity = carts[positionItemInCart].quantity + 1;
+                        break;
+
+                    default:
+                        let valueChange = carts[positionItemInCart].quantity - 1;
+                        if (valueChange > 0) {
+                            carts[positionItemInCart].quantity = valueChange;
+                        } else {
+                            carts.splice(positionItemInCart, 1);
+                        }
+                        break;
+                }
+            }
+            addCartToMemory();
+            addCartToHTML();
+        }
+
+        const initApp = () => {
+            fetch('products.json').
+                then(response => response.json())
+                .then(data => {
+                    listProducts = data;
+                    addDataToHTML();
+
+
+                    if (localStorage.getItem('cart')) {
+                        cart = JSON.parse(localStorage.getItem('cart'));
+                        addCartToHTML();
+                    }
+                })
+        }
+
+        initApp();
+    </script>
 </body>
 
 </html>

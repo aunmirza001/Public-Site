@@ -1483,7 +1483,7 @@ input[type='checkbox'] {
 
 .container .box-container .box:hover{
     box-shadow: 0 10px 15px rgba(0,0,0,.3);
-    transform: scale(1.02);
+    transform: scale(1.09);
 	transition: 0.4s;
 }
 .container .box-container .box h5 {
@@ -1493,30 +1493,6 @@ input[type='checkbox'] {
 
 }
 
-/* .box .price_cont span{
-font-size: 21px;
-font-weight: 600;
-color: rgb(59, 59, 59);
-margin-right: 50px;
-} 
-.box .price_cont button{
-	margin-left: 100px;
-	background: #00bfd8;
-	border: 1px solid #00a7bd;
-    border-radius: 8px;
-    color:#fff;
-	width: 85px;
-	height: 25px;
-    font-size: 13px;
-	font-weight: bold;
-}
-.box .price_cont button:hover{
-	background: white;
-	border: 1px solid #00bfd8;
-    color: #00bfd8;	
-	transition: 0.4s;
-
-} */
 .basic-9 {
 	padding-top: 7rem;
 	padding-bottom: 4rem;
