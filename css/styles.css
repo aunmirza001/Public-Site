@@ -657,6 +657,7 @@ input[type='checkbox'] {
 
 .navbar-custom .nav-item .nav-link {
 	padding: 0.625rem 0.75rem 0.625rem 0.75rem;
+	font-size: 18px;
 	color: #393939;
 	text-decoration: none;
 	transition: all 0.2s ease;
@@ -1364,9 +1365,9 @@ input[type='checkbox'] {
 }
 
 .basic-4 .image-wrapper:hover img {
-	-moz-transform: scale(1.15);
-	-webkit-transform: scale(1.15);
-	transform: scale(1.15);
+	-moz-transform: scale(1.08);
+	-webkit-transform: scale(1.08);
+	transform: scale(1.08);
 } 
 /* end of hover animation */
 
@@ -1409,8 +1410,6 @@ input[type='checkbox'] {
 /*********************/
 
 .container{
-    /* background:linear-gradient(45deg, blueviolet, lightgreen); */
-    /* padding:15px 9%; */
     padding-bottom: 100px;
 }
 
@@ -1460,37 +1459,13 @@ input[type='checkbox'] {
 	font-weight: 500;
     line-height: 1.8;
 }
+/*  */
 
-.container .box-container .box .btn{
-    margin-top: 30px;
-    display: inline-block;
-    background: #00bfd8;
-    color:#fff;
-    font-size: 13px;
-	font-weight: bold;
-    border-radius: 21px;
-    
-}
-
-.container .box-container .box .btn:hover{
-    /* letter-spacing: 1px; */
-	background: white;
-	border: 1px solid #00bfd8;
-    color: #00bfd8;	
-	transition: 0.4s;
-
-}
 
 .container .box-container .box:hover{
     box-shadow: 0 10px 15px rgba(0,0,0,.3);
-    transform: scale(1.09);
+    transform: scale(1.01);
 	transition: 0.4s;
-}
-.container .box-container .box h5 {
-	font-size: 21px;
-	font-weight: 600;
-	font-family: "Poppins", sans-serif;
-
 }
 
 .basic-9 {
@@ -1871,7 +1846,7 @@ a:hover.back-to-top {
 	.navbar-custom .nav-item .nav-link {
 		padding: 0.25rem 0.75rem 0.25rem 0.75rem;
 		color: #fff;
-		opacity: 0.8;
+		opacity: 1;
 	}
 	
 	.navbar-custom .nav-item .nav-link:hover,
@@ -2132,7 +2107,7 @@ a:hover.back-to-top {
 	
 	/* Navigation */
 	.navbar-custom {
-		padding: 2.125rem 5rem 2.125rem 5rem;
+		padding: 1rem 5rem 2.125rem 5rem;
 	}
 
 	.navbar-custom.top-nav-collapse {

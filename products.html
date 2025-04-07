@@ -33,6 +33,8 @@
     <!-- <link href="css/swiper.css" rel="stylesheet"> -->
     <!-- <link href="css/magnific-popup.css" rel="stylesheet"> -->
     <link href="css/styles.css" rel="stylesheet">
+    <!-- Boxicons CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
 
     <!-- Favicon  -->
     <link rel="icon" href="images/falcon.png">
@@ -86,36 +88,22 @@
     }
 
     .cartTab {
-        position: fixed;
-        right: -100%;
-        top: 0;
-        bottom: 0;
-        width: 400px;
-        background-color: #333;
-        color: #fff;
-        transition: right 0.3s ease-in-out;
-    }
-
-    body.showCart .cartTab {
-        right: 0;
-    }
-
-    /* General styles remain the same above */
-
-    .cartTab {
+        margin-top: 80px;
+        margin-bottom: 28px;
         position: fixed;
         top: 0;
         right: -100%;
         bottom: 0;
         width: 400px;
         max-width: 90vw;
-        background-color: #333;
-        color: #fff;
+        background-color: rgb(251, 251, 251);
+        color: #000;
         display: flex;
         flex-direction: column;
         transition: right 0.3s ease-in-out;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        box-shadow: 1px 0 10px rgba(0, 0, 0, 0.3);
         z-index: 10;
+        border-radius: 6px 0 0 6px;
     }
 
     body.showCart .cartTab {
@@ -124,10 +112,10 @@
 
     .cartTab h1 {
         text-align: center;
-        font-weight: 600;
+        font-weight: bold;
         font-size: 1.5rem;
         margin: 20px 0;
-        border-bottom: 1px solid #444;
+        border-bottom: 1px solid #b9b9b9;
         padding-bottom: 10px;
     }
 
@@ -142,9 +130,10 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 15px;
-        background: #444;
+        background: #ffffff;
         padding: 10px;
         border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     .cartTab .listCart .item .image {
@@ -152,29 +141,32 @@
         height: 60px;
         overflow: hidden;
         border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* Added drop shadow */
     }
 
     .cartTab .listCart .item .image img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     .cartTab .listCart .item .details {
         flex: 1;
         margin-left: 10px;
-        color: #eee;
+        color: #000;
     }
 
     .cartTab .listCart .item .details .name {
         font-weight: 600;
         font-size: 0.9rem;
+        color: #000;
     }
 
     .cartTab .listCart .item .details .price {
         font-size: 0.8rem;
         margin-top: 5px;
-        color: #ccc;
+        color: #000;
     }
 
     .cartTab .listCart .item .quantity {
@@ -185,63 +177,87 @@
 
     .cartTab .listCart .item .quantity span {
         display: inline-block;
-        width: 25px;
-        height: 25px;
-        background: #fff;
-        color: #333;
+        width: 30px;
+        height: 30px;
+        background: #f3f3f3;
+        color: rgb(0, 0, 0);
         text-align: center;
-        line-height: 25px;
+        line-height: 30px;
         border-radius: 50%;
         cursor: pointer;
-        font-weight: bold;
+        font-weight: 600;
+        border: none;
+        transition: background 0.3s;
+    }
+
+
+    .cartTab .listCart .item .quantity span:hover {
+        background: #f1f1f1;
     }
 
     .cartTab .btn {
         display: flex;
         justify-content: space-between;
         padding: 15px;
-        border-top: 1px solid #444;
+        border-top: 1px solid #b9b9b9;
     }
 
     .cartTab .btn button {
         flex: 1;
-        padding: 10px;
+        padding: 12px;
         font-size: 1rem;
         border: none;
         border-radius: 8px;
         cursor: pointer;
-        transition: background-color 0.3s;
+        transition: background-color 0.3s, transform 0.2s;
     }
 
     .cartTab .btn .close {
         margin-right: 10px;
-        background-color: #e74c3c;
+        background-color: #ff0015;
         color: #fff;
+        font-weight: bold;
     }
 
     .cartTab .btn .close:hover {
-        background-color: #c0392b;
+        background-color: #f2390a;
     }
 
     .cartTab .btn .checkOut {
-        background-color: #27ae60;
+        border: 1px solid #00bfd8;
+        font-weight: bold;
+        background-color: #00bfd8;
         color: #fff;
     }
 
     .cartTab .btn .checkOut:hover {
-        background-color: #229954;
+        transition: 0.3s;
+        background-color: white;
+        color: #00bfd8;
+        border: 1px solid #00bfd8;
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
+        .cartTab {
+            width: 100%;
+            max-width: none;
+            right: -100%;
+            border-radius: 0;
+        }
+
         .cartTab .listCart .item {
-            flex-direction: column;
+            flex-direction: row;
             align-items: flex-start;
             gap: 10px;
         }
 
         .cartTab .listCart .item .details {
             margin-left: 0;
+        }
+
+        .cartTab .btn {
+            flex-direction: column;
+            gap: 10px;
         }
 
         .cartTab .btn button {
@@ -255,7 +271,6 @@
         gap: 20px;
         padding: 20px 0;
         margin: 15px;
-        /* border: 1px solid red; */
     }
 
     .listProduct .item {
@@ -318,7 +333,35 @@
         color: #2980b9;
     }
 
-    /* Add responsive spacing for smaller screens */
+    .product-inquiry-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        padding: 8px 0;
+        border-top: 1px solid #ddd;
+    }
+
+    .product-inquiry {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        margin: 0;
+    }
+
+    .whatsapp-icon {
+        font-size: 31px;
+        color: #25D366;
+        /* WhatsApp green color */
+        text-decoration: none;
+        transition: transform 0.2s ease-in-out;
+        margin-left: 20px;
+    }
+
+    .whatsapp-icon:hover {
+        transform: scale(1.2);
+    }
+
     @media (max-width: 768px) {
         .listProduct {
             grid-template-columns: 1fr;
@@ -331,9 +374,9 @@
     }
 
     .title {
-        font-size: 26px;
+        font-size: 35px;
         font-weight: bold;
-        color: black;
+        color: rgb(37, 37, 37);
     }
 </style>
 
@@ -431,7 +474,7 @@
                             <p class="p-large">FDE Works is provided professional Industrial Sevcies in Electrical and
                                 Mechanical Engineering fields. FDE provide Automation, Electrical Works, Mechanical
                                 Works and Heating Solutions for Industries.</p>
-                            <a class="btn-solid-lg page-scroll" href="#services">DISCOVER</a>
+                            <!-- <a class="btn-solid-lg page-scroll" href="#services">DISCOVER</a> -->
                         </div> <!-- end of text-container -->
                     </div> <!-- end of col -->
                     <div class="col-lg-6">
@@ -462,21 +505,21 @@
                     <span>0</span>
                 </div>
             </header>
+
             <div class="listProduct">
                 <div class="item">
                     <img src="image1.jpg" alt="Product Image">
-                    <h2>Protein A</h2>
+                    <h2>Product 1</h2>
                     <div class="price">£120</div>
                     <button class="addCart">Add to Cart</button>
+                    <button class="whatsapp-inquiry" data-name="Product 1" data-price="120" data-number="1234567890">
+                        WhatsApp Inquiry
+                    </button>
                 </div>
-                <div class="item">
-                    <img src="image2.jpg" alt="Product Image">
-                    <h2>Protein B</h2>
-                    <div class="price">£150</div>
-                    <button class="addCart">Add to Cart</button>
-                </div>
+
             </div>
         </div>
+
         <div class="cartTab">
             <h1>Shopping Cart</h1>
             <div class="listCart"></div>
@@ -500,7 +543,7 @@
                     <div class="footer-col middle">
                         <h4>Social Media</h4>
                         <span class="fa-stack">
-                            <a href="#your-link">
+                            <a href="#https://www.facebook.com/Falcon-Dynamic-Engineering-229595891815461">
                                 <i class="fas fa-circle fa-stack-2x"></i>
                                 <i class="fab fa-facebook-f fa-stack-1x"></i>
                             </a>
@@ -555,158 +598,168 @@
         let listProductHTML = document.querySelector('.listProduct');
         let listCartHtml = document.querySelector('.listCart');
         let iconCartSpan = document.querySelector('.icon-cart span');
-
         let listProducts = [];
         let carts = [];
+        document.addEventListener("DOMContentLoaded", () => {
+            let cartPanel = document.querySelector('.cartTab');
+            let addCartButtons = document.querySelectorAll('.addCart');
 
+            document.addEventListener("click", (event) => {
+                let isClickInsideCart = cartPanel.contains(event.target);
+                let isClickOnCartIcon = iconCart.contains(event.target);
+                let isClickOnAddToCart = event.target.classList.contains("addCart") || event.target.closest(".addCart");
 
-        iconCart.addEventListener('click', () => {
-            body.classList.toggle('showCart')
-        })
-        closeCart.addEventListener('click', () => {
-            body.classList.toggle('showCart');
+                if (!isClickInsideCart && !isClickOnCartIcon && !isClickOnAddToCart) {
+                    body.classList.remove('showCart');
+                }
+            });
+
+            closeCart.addEventListener('click', () => {
+                body.classList.remove('showCart');
+            });
+
+            iconCart.addEventListener('click', (event) => {
+                event.stopPropagation();
+                body.classList.toggle('showCart');
+            });
+            cartPanel.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
         });
-
-
         const addDataToHTML = () => {
             listProductHTML.innerHTML = '';
+
             if (listProducts.length > 0) {
                 listProducts.forEach(product => {
                     let newProduct = document.createElement('div');
                     newProduct.classList.add('item');
                     newProduct.dataset.id = product.id;
                     newProduct.innerHTML = `
-            <img src="${product.image}">
-            <h2>${product.name}</h2>
-            <p>${product.description}</p>
-            <div class="price">${product.price} $ </div>
-            <button class="addCart"> Add to Cart </button>`;
+                <img src="${product.image}">
+                <h2>${product.name}</h2>
+                <p>${product.description}</p>
+                <div class="price">${product.price} $</div>
+                <button class="addCart">Add to Cart</button>
+
+                <!-- Product Inquiry Section (Bottom) -->
+                <div class="product-inquiry-container">
+                    <h3 class="product-inquiry">Product Inquiry</h3>
+                    <a href="https://wa.me/${product.whatsapp_number || '923226760480'}?text=${encodeURIComponent('Hello, I am interested in ' + product.name + '. Can you provide more details?')}" 
+                       target="_blank" class="whatsapp-icon">
+                        <i class='bx bxl-whatsapp'></i>
+                    </a>
+                </div>
+            `;
                     listProductHTML.appendChild(newProduct);
-                })
+                });
+                document.querySelectorAll(".addCart").forEach(button => {
+                    button.addEventListener("click", function () {
+                        let product_id = this.parentElement.dataset.id;
+                        addToCart(product_id);
+                    });
+                });
             }
-        }
-
-        listProductHTML.addEventListener('click', () => {
-            let positionClick = event.target;
-            if (positionClick.classList.contains('addCart')) {
-                let product_id = positionClick.parentElement.dataset.id;
-                addToCart(product_id);
-            }
-        })
-
+        };
+        // Add to Cart Function
         const addToCart = (product_id) => {
             let positionThisProductInCart = carts.findIndex((value) => value.product_id === product_id);
-            if (carts.length <= 0) {
-                carts = [{
-                    product_id: product_id,
-                    quantity: 1
-                }];
-            } else if (positionThisProductInCart < 0) {
-                carts.push({
-                    product_id: product_id,
-                    quantity: 1
-                });
+
+            if (positionThisProductInCart < 0) {
+                carts.push({ product_id: product_id, quantity: 1 });
             } else {
-                carts[positionThisProductInCart].quantity = carts[positionThisProductInCart].quantity + 1; // Correction ici
+                carts[positionThisProductInCart].quantity += 1;
             }
+
             addCartToHTML();
             addCartToMemory();
         };
-
-        // const addCartToMemory = () => {
-        //     localStorage.setItem('cart', JSON.stringify(carts))
-        // }
         const addCartToMemory = () => {
-            localStorage.setItem('cart', JSON.stringify(carts)); // Save cart data to localStorage
+            localStorage.setItem('cart', JSON.stringify(carts));
         };
-
-        document.querySelector('.checkOut').addEventListener('click', () => {
-            window.location.href = 'checkout.html'; // Redirect to the checkout page
-        });
-
-
         const addCartToHTML = () => {
             listCartHtml.innerHTML = '';
             let totalQuantity = 0;
+
             if (carts.length > 0) {
                 carts.forEach(cart => {
-                    totalQuantity = totalQuantity + cart.quantity;
+                    totalQuantity += cart.quantity;
                     let newCart = document.createElement('div');
                     newCart.classList.add('item');
                     newCart.dataset.id = cart.product_id;
+
                     let positionProduct = listProducts.findIndex((value) => value.id == cart.product_id);
                     let info = listProducts[positionProduct];
-                    newCart.innerHTML = `<div class="image">
+
+                    newCart.innerHTML = `
+                <div class="image">
                     <img src="${info.image}">
                 </div>
-                <div class="name">
-                    ${info.name}
-                </div>
-                <div class="totalPrice">
-                    ${info.price * cart.quantity}
-                </div>
+                <div class="name">${info.name}</div>
+                <div class="totalPrice">${info.price * cart.quantity} $</div>
                 <div class="quantity">
-                    <span class="minus"> < </span>
+                    <span class="minus"> - </span>
                     <span>${cart.quantity}</span>
-                    <span class="plus"> > </span>
+                    <span class="plus"> + </span>
+                </div>
+            `;
 
-                </div>`;
                     listCartHtml.appendChild(newCart);
-                })
+                });
+                document.querySelectorAll(".plus").forEach(button => {
+                    button.addEventListener("click", function () {
+                        let product_id = this.closest('.item').dataset.id;
+                        changeQuantity(product_id, 'plus');
+                    });
+                });
+
+                document.querySelectorAll(".minus").forEach(button => {
+                    button.addEventListener("click", function () {
+                        let product_id = this.closest('.item').dataset.id;
+                        changeQuantity(product_id, 'minus');
+                    });
+                });
             }
+
             iconCartSpan.innerText = totalQuantity;
-        }
-
-        listCartHtml.addEventListener('click', (event) => {
-            let positionClick = event.target;
-            if (positionClick.classList.contains('minus') || positionClick.classList.contains('plus')) {
-                let product_id = positionClick.closest('.item').dataset.id; // Correction ici
-                let type = positionClick.classList.contains('plus') ? 'plus' : 'minus';
-                changeQuantity(product_id, type);
-            }
-        });
-
-        document.querySelector('.checkOut').addEventListener('click', () => {
-            window.location.href = 'checkout.html';
-        });
-
+        };
         const changeQuantity = (product_id, type) => {
             let positionItemInCart = carts.findIndex((value) => value.product_id == product_id);
-            if (positionItemInCart >= 0) {
-                switch (type) {
-                    case 'plus':
-                        carts[positionItemInCart].quantity = carts[positionItemInCart].quantity + 1;
-                        break;
 
-                    default:
-                        let valueChange = carts[positionItemInCart].quantity - 1;
-                        if (valueChange > 0) {
-                            carts[positionItemInCart].quantity = valueChange;
-                        } else {
-                            carts.splice(positionItemInCart, 1);
-                        }
-                        break;
+            if (positionItemInCart >= 0) {
+                if (type === 'plus') {
+                    carts[positionItemInCart].quantity += 1;
+                } else {
+                    let valueChange = carts[positionItemInCart].quantity - 1;
+                    if (valueChange > 0) {
+                        carts[positionItemInCart].quantity = valueChange;
+                    } else {
+                        carts.splice(positionItemInCart, 1);
+                    }
                 }
             }
             addCartToMemory();
             addCartToHTML();
-        }
-
+        };
+        document.querySelector('.checkOut').addEventListener('click', () => {
+            if (carts.length === 0) {
+                alert("Your cart is empty! Add some products first.");
+                return;
+            }
+            window.location.href = 'checkout.html';
+        });
         const initApp = () => {
-            fetch('products.json').
-                then(response => response.json())
+            fetch('products.json')
+                .then(response => response.json())
                 .then(data => {
                     listProducts = data;
-                    addDataToHTML();
-
+                    addDataToHTML(); // Render Products
 
                     if (localStorage.getItem('cart')) {
-                        cart = JSON.parse(localStorage.getItem('cart'));
+                        carts = JSON.parse(localStorage.getItem('cart'));
                         addCartToHTML();
                     }
-                })
-        }
-
+                });
+        };
         initApp();
     </script>
 </body>
